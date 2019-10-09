@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Component } from 'react'
 import axios from 'axios'
-import Card from './Components/JoesCard'
+import JoesCard from "./Components/JoesCard";
 import UserDevCard from './Components/UserDevCard'
 
 class App extends Component {
@@ -46,9 +46,9 @@ fetchFollowing = () => {
   render() {
     return (
       <div className="container">
-          
-        <Card user={this.state.user}/>
-
+        <h1 className='title'>My GitHub User Card</h1>
+        <JoesCard user={this.state.user}/>
+        <h2 className='title'>Users that I Follow</h2>
         {this.state.following.map((item, index) => {
            return <UserDevCard key={index} props={item}/>
         })}

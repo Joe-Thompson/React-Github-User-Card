@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import Card from "./JoesCard";
+import FollowingCards from "./FollowingCards";
 
 class UserDevCard extends Component {
 
@@ -9,7 +9,7 @@ class UserDevCard extends Component {
         this.state = {
             userData: [props.props['login']],
             user: []
-        }
+        };
         console.log(this.state.user)
     }
 
@@ -26,7 +26,7 @@ class UserDevCard extends Component {
     render() {
         return (
             <div>
-            <Card user={this.state.user} />
+            <FollowingCards user={this.state.user} />
             </div>
         )
     }
