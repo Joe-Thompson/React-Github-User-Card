@@ -1,46 +1,35 @@
-import React, { Component } from 'react';
-import Axios from 'axios';
+import React, { Component } from 'react'
+import axios from 'axios';
+import Card from "./JoesCard";
 
 class UserDevCard extends Component {
 
-    constructor(name) {
-        super()
+    constructor(props) {
+        super(props);
         this.state = {
-            name: {name},
-            company: '',
-            bio: '',
-            location: '',
+            userData: [props.props['login']],
+            user: []
         }
+        console.log(this.state.user)
     }
-
 
     componentDidMount() {
-        Axios.get(`https://api.github.com/users/${this.state.name}`)
-        .then(res => {
-            console.log(res)
-            this.setState({
-                name: res.data.name,
-                company: res.data.company,
-                bio: res.data.bio,
-                location: res.data.location
+        axios.get(`https://api.github.com/users/${this.state.userData}`)
+            .then(res => {
+                this.setState({user: res.data})
             })
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
-   render() {
-       return (
-           <>
-           <h1>{this.state.name}</h1>
-           <h1>{this.state.company}</h1>
-           <h1>{this.state.bio}</h1>
-           <h1>{this.state.location}</h1>
-           </>
-       )
-   }
-
+    render() {
+        return (
+            <div>
+            <Card user={this.state.user} />
+            </div>
+        )
+    }
 }
 
 export default UserDevCard;

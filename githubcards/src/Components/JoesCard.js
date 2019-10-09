@@ -1,46 +1,28 @@
-import React, { Component } from 'react';
-import Axios from 'axios';
 
-class Joe extends Component {
+import React, { Component } from 'react'
 
-    constructor() {
-        super()
-        this.state = {
-            name: '',
-            company: '',
-            bio: '',
-            location: '',
-        }
+class Card extends Component {
+    render() {
+        return (
+            <div className="card">
+                <img src={this.props.user.avatar_url} alt='missing' />
+                <div className="card-info">
+                    <h3 className="name">{this.props.user.name}</h3>
+                    <p class="username">{this.props.user.login}</p>
+                    <p>Location: {this.props.user.location}</p>
+                    <p>Profile:  
+                        <a href={this.props.user.html_url}> github page</a>
+                    </p>
+                    <p>Followers: {this.props.user.followers}</p>
+                    <p>Following: {this.props.user.following}</p>
+                    <p>Bio: {this.props.user.bio}</p>
+                </div>
+            </div>
+
+
+
+        )
     }
-
-
-    componentDidMount() {
-        Axios.get('https://api.github.com/users/Joe-Thompson')
-        .then(res => {
-            console.log(res)
-            this.setState({
-                name: res.data.name,
-                company: res.data.company,
-                bio: res.data.bio,
-                location: res.data.location
-            })
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
-
-   render() {
-       return (
-           <>
-           <h1>{this.state.name}</h1>
-           <h1>{this.state.company}</h1>
-           <h1>{this.state.bio}</h1>
-           <h1>{this.state.location}</h1>
-           </>
-       )
-   }
-
 }
 
-export default Joe;
+export default Card;
